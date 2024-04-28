@@ -13,7 +13,7 @@ To download Whisper encoder used in training run `download_whisper.py`.
 ### Datasets
 
 Download appropriate datasets:
-* [ASVspoof2021 DF subset](https://zenodo.org/record/4835108) (**Please note:** we use [this keys&metadata file](https://www.asvspoof.org/resources/DF-keys-stage-1.tar.gz)),
+* [ASVspoof2021 DF subset](https://zenodo.org/record/4835108) (**Please note:** we use this [keys&metadata file](https://www.asvspoof.org/resources/DF-keys-stage-1.tar.gz), directory structure is explained [here](https://github.com/piotrkawa/deepfake-whisper-features/issues/7#issuecomment-1830109945)),
 * [In-The-Wild dataset](https://deepfake-demo.aisec.fraunhofer.de/in_the_wild).
 
 

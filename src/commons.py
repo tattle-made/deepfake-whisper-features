@@ -5,7 +5,7 @@ import random
 import numpy as np
 import torch
 
-WHISPER_MODEL_WEIGHTS_PATH = "src/models/assets/tiny_enc.en.pt"
+WHISPER_MODEL_WEIGHTS_PATH = "./configs/finetuning/weights.pth"
 
 
 def set_seed(seed: int):

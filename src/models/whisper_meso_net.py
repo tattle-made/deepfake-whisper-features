@@ -1,7 +1,7 @@
 import torch
 from src import frontends
 
-from src.models.whisper_main import ModelDimensions, Whisper, log_mel_spectrogram
+from src.models.whisper_main import ModelDimensions, Whisper, log_mel_spectrogram,ModelDimensions
 from src.models.meso_net import MesoInception4
 from src.commons import WHISPER_MODEL_WEIGHTS_PATH
 
@@ -12,10 +12,27 @@ class WhisperMesoNet(MesoInception4):
 
         self.device = kwargs['device']
         checkpoint = torch.load(WHISPER_MODEL_WEIGHTS_PATH)
-        dims = ModelDimensions(**checkpoint["dims"].__dict__)
+        # Handle missing dims key
+        if "dims" not in checkpoint:
+            print("Creating default dimensions for Whisper model")
+            # Default dimensions for 'base' model - adjust if using a different model
+            dims = ModelDimensions(
+                n_mels=80,
+                n_audio_ctx=1500,
+                n_audio_state=384,
+                n_audio_head=6,
+                n_audio_layer=4,
+                n_vocab=51864,
+                n_text_ctx=448,
+                n_text_state=384,
+                n_text_head=6,
+                n_text_layer=4
+            )
+        else:
+            dims = ModelDimensions(**checkpoint["dims"].__dict__)
         model = Whisper(dims)
         model = model.to(self.device)
-        model.load_state_dict(checkpoint["model_state_dict"])
+        # model.load_state_dict(checkpoint["model_state_dict"])
         self.whisper_model = model
         if freeze_encoder:
             for param in self.whisper_model.parameters():

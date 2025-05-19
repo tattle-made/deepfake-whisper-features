@@ -1,4 +1,4 @@
-conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 cudatoolkit=11.3 -c pytorch -y
+conda install pytorch==1.11.0 torchvision==0.12.0 torchaudio==0.11.0 -c pytorch -y
 
 pip install asteroid-filterbanks==0.4.0
 pip install librosa==0.9.2

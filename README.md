@@ -1,3 +1,29 @@
+# Whisper fork by Tattle
+
+Steps to run inference script
+
+1. Create a conda environment.
+```shell
+conda create --name env_name python=3.8
+```
+
+2. Activate the environment.
+```shell
+conda activate env_name
+```
+
+3. Run installation script.
+```shell
+bash install.sh
+```
+
+4. Download weights and config file from [here](https://drive.google.com/drive/folders/1YWMC64MW4HjGUX1fnBaMkMIGgAJde9Ch?usp=sharing) and copy to path ./configs/finetuning/
+
+5. Run the inference script
+```shell
+python3 inference.py --config=configs/finetuning/config.yaml --input_path=path_to_dataset --model_path=configs/finetuning/weights.pth
+```
+
 # Improved DeepFake Detection Using Whisper Features
 
 The following repository contains code for our paper called "Improved DeepFake Detection Using Whisper Features".

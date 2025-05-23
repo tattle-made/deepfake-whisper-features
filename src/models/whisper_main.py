@@ -92,7 +92,9 @@ def log_mel_spectrogram(audio: torch.Tensor, n_mels: int = N_MELS):
     magnitudes = stft[:, :-1].abs() ** 2
 
     filters = mel_filters(audio.device, n_mels)
-    mel_spec = filters @ magnitudes
+    min_bins = 200
+    mel_spec = filters[:, :min_bins] @ magnitudes[:min_bins, :]
+    # mel_spec = filters @ magnitudes
 
     log_spec = torch.clamp(mel_spec, min=1e-10).log10()
     log_spec = torch.maximum(log_spec, log_spec.max() - 8.0)
